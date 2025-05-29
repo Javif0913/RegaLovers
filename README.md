@@ -28,12 +28,8 @@ A través de una **wishlist** secreta del anfitrión y una **asignación oculta 
 
 ### Frontend
 - HTML5, CSS, HTMX
-- FastAPI (para conexión backend)
 
 ### Backend
-- Django (Python)
-- PostgreSQL
-- Docker (despliegue)
-- Autenticación con sesiones
-  
+- Kotlin Multiplatform
+- SqlDelight
 ---
