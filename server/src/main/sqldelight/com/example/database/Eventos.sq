@@ -1,0 +1,21 @@
+CREATE TABLE eventos (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    nombre TEXT NOT NULL,
+    owner TEXT NOT NULL,
+    fecha TEXT NOT NULL
+);
+
+selectAll:
+SELECT * FROM eventos;
+selectById:
+SELECT * FROM eventos
+WHERE id = :id;
+insertEvento:
+INSERT INTO eventos(nombre, owner, fecha)
+VALUES (:nombre, :owner, :fecha);
+deleteById:
+DELETE FROM eventos WHERE id = ?;
+updateEvento:
+UPDATE eventos
+SET nombre = ?, owner = ?, fecha = ?
+WHERE id = ?;
