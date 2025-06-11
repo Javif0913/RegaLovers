@@ -14,7 +14,13 @@ import io.ktor.server.request.receive
 import app.cash.sqldelight.driver.jdbc.sqlite.JdbcSqliteDriver
 import com.example.database.AppDatabase
 
+
+
+
+
 lateinit var database: AppDatabase
+
+
 
 fun main() {
     initDatabase()
@@ -124,6 +130,42 @@ fun Application.module() {
 
             call.respond(mapOf("mensaje" to "Evento actualizado correctamente"))
         }
+        get("/eventos/{id}/regalos") {
+            val eventoId = call.parameters["id"]?.toLongOrNull()
+            if (eventoId == null) {
+                call.respond(HttpStatusCode.BadRequest, mapOf("error" to "ID inválido"))
+                return@get
+            }
+
+            val regalos = database.regalosQueries.selectRegalosPorEvento(eventoId).executeAsList().map {
+                Regalo(
+                    id = it.id,
+                    evento_id = it.evento_id,
+                    descripcion = it.descripcion,
+                    claimed = it.claimed != 0L // 👈 conversión manual a Boolean
+                )
+            }
+
+            call.respond(regalos)
+        }
+
+
+        post("/eventos/{id}/regalos") {
+            val eventoId = call.parameters["id"]?.toLongOrNull()
+            if (eventoId == null) return@post call.respond(HttpStatusCode.BadRequest)
+
+            val nuevoRegalo = call.receive<CrearRegaloRequest>()
+            database.regalosQueries.insertRegalo(eventoId, nuevoRegalo.descripcion)
+            call.respond(HttpStatusCode.Created, mapOf("mensaje" to "Regalo agregado"))
+        }
+
+        put("/regalos/{id}/claim") {
+            val regaloId = call.parameters["id"]?.toLongOrNull()
+            if (regaloId == null) return@put call.respond(HttpStatusCode.BadRequest)
+
+            database.regalosQueries.updateClaim(regaloId)
+            call.respond(mapOf("mensaje" to "Regalo marcado como reclamado"))
+        }
     }
 }
 
@@ -149,16 +191,32 @@ data class UpdateEventoRequest(
     val fecha: String
 )
 
+@Serializable
+data class Regalo(
+    val id: Long,
+    val evento_id: Long,
+    val descripcion: String,
+    val claimed: Boolean
+)
+
+@Serializable
+data class CrearRegaloRequest(val descripcion: String)
+
 fun initDatabase() {
     val driver = JdbcSqliteDriver("jdbc:sqlite:eventos.db")
     val dbFile = java.io.File("eventos.db")
+
     if (!dbFile.exists()) {
         AppDatabase.Schema.create(driver)
     }
-    database = AppDatabase(driver)
+
+    database = AppDatabase(driver) // ← SIN adaptadores
 
     if (database.eventosQueries.selectAll().executeAsList().isEmpty()) {
         database.eventosQueries.insertEvento("Cumpleaños Juan", "Juan", "2025-06-05")
         database.eventosQueries.insertEvento("Aniversario Ana y Luis", "Luis", "2025-07-20")
     }
 }
+
+
+
