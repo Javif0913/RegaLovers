@@ -1,13 +1,13 @@
-TEL 335 - Diseño de applicaciones web y móviles
+# Proyecto de Gestión de Regalos
 
-Clase 06:
-- Se arreglan un par de cosas en los build.gradlew
-- Se agrega sqlDelight al server (fixeado problema de plugin)
-- Se crea una tabla de ejemplo "Question"
-- Se agrega DriverFactory de la bd
-- Se agrega un ejemplo de llamda a la bd con un GET ("/questions")
+Este proyecto permite gestionar participantes en eventos, utilizando una base de datos local con SQLDelight y Kotlin.
 
-This is a Kotlin Multiplatform project targeting Android, iOS, Server.
+## Características Principales
+- **Consulta de Participantes**: Obtén participantes por ID de evento y usuario.
+
+## Requisitos
+- Android Studio
+- SQLDelight 
 
 * `/composeApp` is for code that will be shared across your Compose Multiplatform applications.
   It contains several subfolders:
