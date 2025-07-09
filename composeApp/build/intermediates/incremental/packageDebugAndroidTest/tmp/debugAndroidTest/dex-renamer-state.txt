@@ -1,0 +1,4 @@
+#Mon Jul 07 21:02:31 CLT 2025
+base.0=/home/nm/Programacion/Kotlin/TEL-335-KMP-clase-07-Android/composeApp/build/intermediates/dex/debugAndroidTest/mergeProjectDexDebugAndroidTest/0/classes.dex
+path.0=0/classes.dex
+renamed.0=classes.dex

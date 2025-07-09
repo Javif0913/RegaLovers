@@ -1,0 +1,41 @@
+CREATE TABLE Eventos (
+  id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+  id_organizador INTEGER NOT NULL,
+  nombre TEXT NOT NULL,
+  descripcion TEXT,
+  lugar TEXT,
+  imagen TEXT,
+  tipo_evento TEXT,
+  estado TEXT
+);
+
+-- Consultas para la tabla Eventos
+insertEvento:
+INSERT INTO Eventos(id_organizador, nombre, descripcion, lugar, imagen, tipo_evento, estado)
+VALUES (?, ?, ?, ?, ?, ?, ?);
+
+selectEventoById:
+SELECT * FROM Eventos WHERE id = ?;
+
+selectAllEventos:
+SELECT * FROM Eventos;
+
+selectEventosByOrganizador:
+SELECT * FROM Eventos WHERE id_organizador = ?;
+
+updateEvento:
+UPDATE Eventos SET nombre = ?, descripcion = ?, lugar = ?, imagen = ?, tipo_evento = ?, estado = ? WHERE id = ?;
+
+deleteEventoById:
+DELETE FROM Eventos WHERE id = ?;
+
+deleteAllEventos:
+DELETE FROM Eventos;
+
+-- Datos de ejemplo para Eventos
+
+INSERT INTO Eventos(id_organizador, nombre, descripcion, lugar, imagen, tipo_evento, estado) VALUES
+(1, 'Concierto de Rock', 'Un concierto épico de rock con bandas locales.', 'Estadio Nacional', 'https://example.com/concierto.png', 'Música', 'Activo'),
+(2, 'Conferencia de Tecnología', 'Charlas y talleres sobre las últimas tendencias tecnológicas.', 'Centro de Convenciones', 'https://example.com/tech_conf.png', 'Conferencia', 'Activo'),
+(1, 'Festival Gastronómico', 'Prueba la mejor comida local e internacional.', 'Parque Central', 'https://example.com/gastronomia.png', 'Comida', 'Pendiente'),
+(1, 'Cumpleaños', 'Por favor ben :(', 'Estadio Nacional', 'https://example.com/concierto.png', 'Música', 'Activo');

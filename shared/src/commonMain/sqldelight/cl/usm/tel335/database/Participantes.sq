@@ -1,0 +1,41 @@
+CREATE TABLE Participantes (
+
+  id_evento INTEGER NOT NULL PRIMARY KEY,
+  id_usuario INTEGER NOT NULL
+);
+
+-- Consultas para la tabla Participantes
+insertParticipante:
+INSERT INTO Participantes(id_evento, id_usuario)
+VALUES (?, ?);
+
+
+selectAllParticipantes:
+SELECT * FROM Participantes;
+
+selectParticipantesByEvento:
+SELECT * FROM Participantes WHERE id_evento = ?;
+
+selectParticipantesByUsuario:
+SELECT * FROM Participantes WHERE id_usuario = ?;
+
+-- En tu archivo .sq (ej: Participantes.sq)
+getParticipanteByIdEventoAndUsuario:
+SELECT * FROM Participantes
+WHERE id_evento = ? AND id_usuario = ?;
+
+
+deleteParticipanteByIdEventoAndUsuario:
+DELETE FROM Participantes WHERE id_evento = ? AND id_usuario = ?;
+
+deleteParticipantesByEventoId:
+DELETE FROM  Participantes WHERE id_evento = ?;
+
+deleteAllParticipantes:
+DELETE FROM Participantes;
+
+-- Opcional: Datos de ejemplo para Participantes
+INSERT INTO Participantes(id_evento, id_usuario) VALUES
+(1, 1), -- Usuario 1 participa en Evento 1
+(1, 2), -- Usuario 2 participa en Evento 1
+(2, 1); -- Usuario 1 participa en Evento 2

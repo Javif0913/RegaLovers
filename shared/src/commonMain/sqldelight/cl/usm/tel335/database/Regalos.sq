@@ -1,0 +1,38 @@
+CREATE TABLE Regalos (
+  id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+  id_evento INTEGER NOT NULL,
+  nombre_regalo TEXT NOT NULL,
+  descripcion TEXT,
+  precio_estimado REAL, -- DECIMAL se mapea a REAL en SQLite
+  url_tienda TEXT,
+  imagen TEXT,
+  estado TEXT
+);
+
+insertRegalo:
+INSERT INTO Regalos(id_evento, nombre_regalo, descripcion, precio_estimado, url_tienda, imagen, estado)
+VALUES (?, ?, ?, ?, ?, ?, ?);
+
+selectRegaloById:
+SELECT * FROM Regalos WHERE id = ?;
+
+selectAllRegalos:
+SELECT * FROM Regalos;
+
+selectRegalosByEvento:
+SELECT * FROM Regalos WHERE id_evento = ?;
+
+updateRegalo:
+UPDATE Regalos SET nombre_regalo = ?, descripcion = ?, precio_estimado = ?, url_tienda = ?, imagen = ?, estado = ? WHERE id = ?;
+
+deleteRegaloById:
+DELETE FROM Regalos WHERE id = ?;
+
+deleteAllRegalos:
+DELETE FROM Regalos;
+
+-- Opcional: Datos de ejemplo para Regalos:
+INSERT INTO Regalos(id_evento, nombre_regalo, descripcion, precio_estimado, url_tienda, imagen, estado) VALUES
+(1, 'Guitarra Eléctrica', 'Guitarra para coleccionistas.', 500.00, 'https://tienda.com/guitarra', 'https://example.com/guitarra.png', 'Disponible'),
+(1, 'Entradas VIP', 'Entradas para el área VIP del concierto.', 150.00, 'https://tienda.com/entradas', NULL, 'Disponible'),
+(2, 'Libro de Programación', 'Un libro sobre Kotlin Multiplatform.', 45.99, 'https://libreria.com/kotlin', 'https://example.com/libro.png', 'Reservado');

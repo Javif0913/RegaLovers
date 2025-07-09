@@ -1,0 +1,40 @@
+    CREATE TABLE Usuarios (
+      id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+      nickname TEXT NOT NULL UNIQUE, -- Asumo que el nickname debe ser único
+      email TEXT NOT NULL UNIQUE,   -- El email debe ser único
+      contrasena_hash TEXT NOT NULL,
+      fecha_registro INTEGER NOT NULL, -- DATETIME se mapea a INTEGER (Unix timestamp en milisegundos) en SQLite
+      avatar_imagen TEXT
+    );
+
+    -- Consultas de ejemplo para la tabla Usuarios:
+
+    insertUsuario:
+    INSERT INTO Usuarios(nickname, email, contrasena_hash, fecha_registro, avatar_imagen)
+    VALUES (?, ?, ?, ?, ?);
+
+    selectUsuarioById:
+    SELECT * FROM Usuarios WHERE id = ?;
+
+    selectUsuarioByNickname:
+    SELECT * FROM Usuarios WHERE nickname = ?;
+
+    selectUsuarioByEmail:
+    SELECT * FROM Usuarios WHERE email = ?;
+
+    selectAllUsuarios:
+    SELECT * FROM Usuarios;
+
+    updateContrasena:
+    UPDATE Usuarios SET contrasena_hash = ? WHERE id = ?;
+
+    deleteUsuarioById:
+    DELETE FROM Usuarios WHERE id = ?;
+    deleteAllUsuarios:
+    DELETE FROM Usuarios;
+
+
+    INSERT INTO Usuarios(nickname, email, contrasena_hash, fecha_registro, avatar_imagen) VALUES
+    ('usuario1', 'usuario1@example.com', 'hash123_user1', 1678886400000, NULL),
+    ('admin', 'admin@example.com', 'admin_hash_secure', 1678972800000, NULL),
+    ('maria_p', 'maria.perez@example.com', 'maria_pass_hash', 1679059200000, NULL);

@@ -1,0 +1,29 @@
+CREATE TABLE Question (
+    id INTEGER NOT NULL PRIMARY KEY,
+    text TEXT NOT NULL,
+    category TEXT NOT NULL
+);
+
+selectAll:
+SELECT * FROM Question;
+
+selectById:
+SELECT * FROM Question
+WHERE id = ?;
+
+insertQuestion:
+INSERT INTO Question(id, text, category)
+VALUES (?, ?, ?);
+
+deleteAll:
+DELETE FROM Question;
+
+deleteById:
+DELETE FROM Question
+WHERE id = ?;
+
+-- Datos de ejemplo
+INSERT INTO Question(id, text, category) VALUES
+(1, '¿Cuál es la capital de Francia?', 'Geografía'),
+(2, '¿Quién escribió Cien años de soledad?', 'Literatura'),
+(3, '¿Cuál es el resultado de 9 x 7?', 'Matemáticas');
