@@ -1,0 +1,59 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Añadir Regalos al Evento</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body class="bg-yellow-50 flex justify-center items-center min-h-screen">
+<div class="container bg-white p-8 rounded-xl shadow-lg max-w-md w-full">
+    <h1 class="text-3xl font-bold text-red-600 mb-4 text-center">Añadir Regalos</h1>
+    <p id="eventName" class="text-gray-700 text-center mb-6"></p>
+
+    <form id="addGiftForm" class="space-y-4">
+        <div>
+            <label for="nombre_regalo" class="block text-gray-700 text-sm font-bold mb-2">Nombre del Regalo:</label>
+            <input type="text" id="nombre_regalo" name="nombre_regalo" required
+                   class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+        </div>
+        <div>
+            <label for="descripcion" class="block text-gray-700 text-sm font-bold mb-2">Descripción:</label>
+            <textarea id="descripcion" name="descripcion" rows="2"
+                      class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"></textarea>
+        </div>
+        <div>
+            <label for="precio_estimado" class="block text-gray-700 text-sm font-bold mb-2">Precio Estimado:</label>
+            <input type="number" id="precio_estimado" name="precio_estimado" step="0.01"
+                   class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+        </div>
+        <div>
+            <label for="url_tienda" class="block text-gray-700 text-sm font-bold mb-2">URL de la Tienda (opcional):</label>
+            <input type="url" id="url_tienda" name="url_tienda"
+                   class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+        </div>
+        <div>
+            <label for="imagen" class="block text-gray-700 text-sm font-bold mb-2">URL de la Imagen (opcional):</label>
+            <input type="url" id="imagen" name="imagen"
+                   class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+        </div>
+
+        <div class="flex items-center justify-between mt-6">
+            <button type="submit" class="button bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded-lg">
+                Guardar Regalo
+            </button>
+            <button type="button" id="finishAddingGifts" class="button bg-gray-600 hover:bg-gray-700 text-white font-semibold py-2 px-4 rounded-lg">
+                Finalizar
+            </button>
+        </div>
+    </form>
+
+    <p id="message" class="mt-4 text-center text-sm"></p>
+</div>
+
+<!-- Enlace de archivo JS -->
+<script src="/assets/js/anadir-regalo.js"></script>
+</body>
+</html>

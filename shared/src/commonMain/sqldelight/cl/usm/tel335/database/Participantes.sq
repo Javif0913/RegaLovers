@@ -1,0 +1,32 @@
+CREATE TABLE Participantes (
+  id_evento INTEGER NOT NULL,
+  id_usuario INTEGER NOT NULL
+);
+
+-- Consultas para la tabla Participantes
+insertParticipante:
+INSERT INTO Participantes(id_evento, id_usuario)
+VALUES (?, ?);
+
+selectAllParticipantes:
+SELECT * FROM Participantes;
+
+deleteAllParticipantes:
+DELETE FROM Participantes;
+
+selectParticipanteByUsuarioYEvento:
+SELECT * FROM Participantes WHERE id_usuario = ? AND id_evento = ?;
+
+-- Opcional: Datos de ejemplo para Participantes
+INSERT INTO Participantes(id_evento, id_usuario) VALUES
+(1, 1),  -- Usuario con ID 1 participa en el Evento con ID 1
+(1, 3),  -- Usuario con ID 3 participa en el Evento con ID 1
+(2, 2),  -- Usuario con ID 2 participa en el Evento con ID 2
+(2, 4),  -- Usuario con ID 4 participa en el Evento con ID 2
+(3, 5),  -- Usuario con ID 5 participa en el Evento con ID 3
+(3, 6),  -- Usuario con ID 6 participa en el Evento con ID 3
+(4, 7),  -- Usuario con ID 7 participa en el Evento con ID 4
+(5, 8),  -- Usuario con ID 8 participa en el Evento con ID 5
+(6, 9),  -- Usuario con ID 9 participa en el Evento con ID 6
+(7, 10); -- Usuario con ID 10 participa en el Evento con ID 7
+
