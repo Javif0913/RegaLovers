@@ -9,10 +9,6 @@ CREATE TABLE Eventos (
   estado TEXT
 );
 
-lastInsertRowId:
-SELECT last_insert_rowid();
-
--- Consultas para la tabla Eventos
 insertEvento:
 INSERT INTO Eventos(id_organizador, nombre, descripcion, lugar, imagen, tipo_evento, estado)
 VALUES (?, ?, ?, ?, ?, ?, ?);
@@ -26,12 +22,6 @@ SELECT * FROM Eventos;
 selectEventosByOrganizador:
 SELECT * FROM Eventos WHERE id_organizador = ?;
 
-getEventosByUsuario:
-SELECT DISTINCT e.*
-FROM Eventos e
-LEFT JOIN Participantes p ON e.id = p.id_evento
-WHERE e.id_organizador = ? OR p.id_usuario = ?;
-
 updateEvento:
 UPDATE Eventos SET nombre = ?, descripcion = ?, lugar = ?, imagen = ?, tipo_evento = ?, estado = ? WHERE id = ?;
 
@@ -44,13 +34,6 @@ DELETE FROM Eventos;
 -- Datos de ejemplo para Eventos
 
 INSERT INTO Eventos(id_organizador, nombre, descripcion, lugar, imagen, tipo_evento, estado) VALUES
-(1, 'Boda de Ana y Carlos', 'Celebración de la boda con familiares y amigos.', 'Salón Gran Vista', 'https://example.com/boda.png', 'Boda', 'Activo'),
-(2, 'Cumpleaños 30 de Laura', 'Fiesta sorpresa para los 30 años de Laura.', 'Restaurante El Bosque', 'https://example.com/cumpleaños.png', 'Cumpleaños', 'Activo'),
-(3, 'Baby Shower de Sofía', 'Celebración para dar la bienvenida al bebé.', 'Casa de Ana', 'https://example.com/babyshower.png', 'Baby Shower', 'Pendiente'),
-(4, 'Fiesta de Navidad Familiar', 'Reunión anual para intercambiar regalos navideños.', 'Casa de los Pérez', 'https://example.com/navidad.png', 'Navidad', 'Activo'),
-(5, 'Aniversario de Bodas de Oro', 'Celebración del 50 aniversario de matrimonio.', 'Hotel Plaza', 'https://example.com/aniversario.png', 'Aniversario', 'Pendiente'),
-(6, 'Fiesta de Graduación', 'Celebración de la graduación universitaria.', 'Club Social', 'https://example.com/graduacion.png', 'Graduación', 'Activo'),
-(7, 'Fiesta Temática de Halloween', 'Evento con disfraces y regalos sorpresa.', 'Centro Cultural', 'https://example.com/halloween.png', 'Temática', 'Activo'),
-(8, 'Fiesta de Despedida de Soltera', 'Celebración con amigas antes de la boda.', 'Bar La Luna', 'https://example.com/despedida.png', 'Despedida', 'Pendiente'),
-(9, 'Fiesta de Bienvenida a la Casa Nueva', 'Celebración de inauguración con regalos para el hogar.', 'Casa nueva de Jorge', 'https://example.com/casa.png', 'Inauguración', 'Activo'),
-(10, 'Cumpleaños Infantil de Mateo', 'Fiesta para niños con regalos y juegos.', 'Parque Central', 'https://example.com/cumpleaños_infantil.png', 'Cumpleaños', 'Activo');
+(1, 'Partido', '', 'Estadio Nacional', 'https://example.com/concierto.png', 'Música', 'Activo'),
+(2, 'Conferencia de Tecnología', 'Charlas y talleres sobre las últimas tendencias tecnológicas.', 'Centro de Convenciones', 'https://example.com/tech_conf.png', 'Conferencia', 'Activo'),
+(1, 'Cumpleaños', 'Por favor ben :(', 'Mi casa', 'no', '', 'Activo');

@@ -3,14 +3,11 @@ CREATE TABLE Regalos (
   id_evento INTEGER NOT NULL,
   nombre_regalo TEXT NOT NULL,
   descripcion TEXT,
-  precio_estimado REAL, -- DECIMAL se mapea a REAL en SQLite
+  precio_estimado REAL,
   url_tienda TEXT,
   imagen TEXT,
   estado TEXT
 );
-
-lastInsertRowId:
-SELECT last_insert_rowid();
 
 insertRegalo:
 INSERT INTO Regalos(id_evento, nombre_regalo, descripcion, precio_estimado, url_tienda, imagen, estado)
@@ -36,32 +33,12 @@ DELETE FROM Regalos;
 
 -- Opcional: Datos de ejemplo para Regalos:
 INSERT INTO Regalos(id_evento, nombre_regalo, descripcion, precio_estimado, url_tienda, imagen, estado) VALUES
-(1, 'Juego de Vajilla Elegante', 'Juego de platos y tazas para 12 personas.', 120.00, 'https://tienda.com/vajilla', 'https://example.com/vajilla.png', 'Disponible'),
-(1, 'Set de Copas de Vino', 'Copas de cristal para celebraciones.', 80.00, 'https://tienda.com/copasvino', 'https://example.com/copasvino.png', 'Disponible'),
+(1, 'Guitarra Eléctrica', 'Guitarra para coleccionistas.', 500.00, 'https://tienda.com/guitarra', 'https://example.com/guitarra.png', 'Disponible'),
+(1, 'Entradas VIP', 'Entradas para el área VIP del concierto.', 150.00, 'https://tienda.com/entradas', NULL, 'Disponible'),
+(2, 'Libro de Programación', 'Un libro sobre Kotlin Multiplatform.', 45.99, 'https://libreria.com/kotlin', 'https://example.com/libro.png', 'Reservado'),
+(1, 'Cerveza Kross', 'Cerveza artesanal chilena de alta calidad y sabor único.', 2500.00, 'https://tienda.com/kross', 'https://example.com/kross.png', 'Disponible'),
+(2, 'Cerveza Golden', 'Cerveza dorada premium con cuerpo maltoso.', 1800.00, 'https://tienda.com/golden', 'https://example.com/golden.png', 'Disponible'),
+(1, 'Cerveza Calafate', 'Cerveza patagónica con ingredientes del sur de Chile.', 2200.00, 'https://tienda.com/calafate', 'https://example.com/calafate.png', 'Reservado'),
+(1, 'Cerveza Torobayo', 'Cerveza artesanal con carácter y tradición chilena.', 2400.00, 'https://tienda.com/torobayo', 'https://example.com/torobayo.png', 'Disponible'),
+(2, 'Cerveza Austral', 'Cerveza del extremo sur, con sabor patagónico.', 1900.00, 'https://tienda.com/austral', NULL, 'Disponible');
 
-(2, 'Kit de Decoración para Fiesta', 'Decoraciones temáticas para cumpleaños.', 40.00, 'https://tienda.com/decoracion', 'https://example.com/decoracion.png', 'Disponible'),
-(2, 'Tarjeta de Regalo Spa', 'Relax y cuidados para la cumpleañera.', 70.00, 'https://tienda.com/spa', NULL, 'Disponible'),
-
-(3, 'Cochecito para Bebé', 'Cochecito ligero y fácil de plegar.', 250.00, 'https://tienda.com/cochecito', 'https://example.com/cochecito.png', 'Disponible'),
-(3, 'Set de Ropa de Bebé', 'Ropa suave y cómoda para recién nacidos.', 60.00, 'https://tienda.com/ropabebe', NULL, 'Disponible'),
-
-(4, 'Caja de Chocolates Premium', 'Deliciosos chocolates surtidos.', 35.00, 'https://tienda.com/chocolates', 'https://example.com/chocolates.png', 'Disponible'),
-(4, 'Adorno Navideño Personalizado', 'Adorno para el árbol con nombres.', 25.00, 'https://tienda.com/adorno', NULL, 'Disponible'),
-
-(5, 'Álbum de Fotos Personalizado', 'Álbum para recuerdos del aniversario.', 50.00, 'https://tienda.com/album', 'https://example.com/album.png', 'Disponible'),
-(5, 'Set de Velas Aromáticas', 'Velas para ambientar el hogar.', 40.00, 'https://tienda.com/velas', NULL, 'Disponible'),
-
-(6, 'Traje Formal', 'Elegante traje para graduación.', 180.00, 'https://tienda.com/traje', 'https://example.com/traje.png', 'Disponible'),
-(6, 'Reloj Clásico', 'Reloj de pulsera para ocasiones especiales.', 120.00, 'https://tienda.com/reloj', NULL, 'Disponible'),
-
-(7, 'Disfraz de Vampiro', 'Disfraz completo para Halloween.', 60.00, 'https://tienda.com/disfraz', 'https://example.com/disfraz.png', 'Disponible'),
-(7, 'Set de Maquillaje', 'Maquillaje para fiesta temática.', 45.00, 'https://tienda.com/maquillaje', NULL, 'Disponible'),
-
-(8, 'Kit de Belleza', 'Productos para cuidado personal.', 80.00, 'https://tienda.com/belleza', 'https://example.com/belleza.png', 'Disponible'),
-(8, 'Vale para Cena', 'Cena para dos personas en restaurante.', 90.00, 'https://tienda.com/cena', NULL, 'Disponible'),
-
-(9, 'Juego de Ollas y Sartenes', 'Set completo para cocina.', 150.00, 'https://tienda.com/ollas', 'https://example.com/ollas.png', 'Disponible'),
-(9, 'Planta de Interior', 'Planta decorativa para el hogar.', 30.00, 'https://tienda.com/planta', NULL, 'Disponible'),
-
-(10, 'Juegos de Mesa', 'Juegos para niños y adultos.', 35.00, 'https://tienda.com/juegos', 'https://example.com/juegos.png', 'Disponible'),
-(10, 'Globos y Decoraciones', 'Decoraciones para fiesta infantil.', 20.00, 'https://tienda.com/globos', NULL, 'Disponible');

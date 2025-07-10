@@ -1,29 +1,21 @@
 package cl.usm.tel335.data
 
-import cl.usm.tel335.database.Database // Esta es la clase de base de datos generada por SQLDelight
+import cl.usm.tel335.database.Database
 import cl.usm.tel335.database.Eventos
-import cl.usm.tel335.database.Question
-import cl.usm.tel335.model.QuestionDto
-import cl.usm.tel335.database.Usuarios // <-- CORREGIDO: Importa la clase Usuario (singular)
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
+import cl.usm.tel335.database.Usuarios
 import cl.usm.tel335.database.Regalos
 import cl.usm.tel335.database.Participantes
-//Importar
 import cl.usm.tel335.model.UsuariosDto
 import cl.usm.tel335.model.EventosDto
 import cl.usm.tel335.model.ParticipantesDto
 import cl.usm.tel335.model.RegalosDto
-import kotlinx.serialization.SerialName
 import kotlin.Long
-
-import kotlinx.datetime.Clock // Para manejar fechas como timestamps
+import kotlinx.datetime.Clock
 
 
 public class AppDatabase(driverFactory: DriverFactory){
-    private val driver = driverFactory.createDriver() // Mantener el driver para la creación del esquema
+    private val driver = driverFactory.createDriver()
     private val dataBase = Database(driver)
-    internal val questionQueries = dataBase.questionQueries
 
     //PROYECTO SEGUN TABLAS
     internal val usuariosQueries = dataBase.usuariosQueries
@@ -31,12 +23,6 @@ public class AppDatabase(driverFactory: DriverFactory){
     internal val regalosQueries = dataBase.regalosQueries
     internal val participantesQueries = dataBase.participantesQueries
 
-
-    // --- Funciones para Question ---
-    public fun getAllQuestions(): List<QuestionDto> {
-        val questionsDto = questionQueries.selectAll().executeAsList().map { it.toDTO() }
-        return questionsDto
-    }
 
     // --- Funciones para Usuarios ---
     public fun getAllUsuarios(): List<UsuariosDto> {
@@ -48,11 +34,14 @@ public class AppDatabase(driverFactory: DriverFactory){
             nickname = nickname,
             email = email,
             contrasena_hash = contrasena_hash,
-            fecha_registro = Clock.System.now().toEpochMilliseconds(), // Genera la fecha actual
+            fecha_registro = Clock.System.now().toEpochMilliseconds(),
             avatar_imagen = avatar_imagen
         )
     }
 
+    public fun getUsuarioByEmail(email: String): UsuariosDto? {
+        return usuariosQueries.selectUsuarioByEmail(email).executeAsOneOrNull()?.toDTO()
+    }
     public fun getUsuarioById(id: Long): UsuariosDto? {
         return usuariosQueries.selectUsuarioById(id).executeAsOneOrNull()?.toDTO()
     }
@@ -107,6 +96,7 @@ public class AppDatabase(driverFactory: DriverFactory){
         return eventosQueries.selectEventosByOrganizador(id_organizador).executeAsList().map { it.toDTO() }
     }
 
+
     public fun updateEvento(
         id: Long,
         nombre: String,
@@ -133,21 +123,22 @@ public class AppDatabase(driverFactory: DriverFactory){
         return regalosQueries.selectAllRegalos().executeAsList().map { it.toDTO() }
     }
 
-    public fun insertRegalo(
-        id_evento: Long,
-        nombre_regalo: String,
-        descripcion: String?,
-        precio_estimado: Double?,
-        url_tienda: String?,
-        imagen: String?,
-        estado: String?
-    ) {
+    fun insertRegalo(
+        idEvento: Long,
+        nombre: String,
+        descripcion: String? = null, // Parámetro opcional
+        precioEstimado: Double,
+        urlTienda: String? = null,
+        imagen: String? = null,
+        estado: String = "disponible"
+    )
+{
         regalosQueries.insertRegalo(
-            id_evento = id_evento,
-            nombre_regalo = nombre_regalo,
+            id_evento = idEvento,
+            nombre_regalo = nombre,
             descripcion = descripcion,
-            precio_estimado = precio_estimado,
-            url_tienda = url_tienda,
+            precio_estimado = precioEstimado,
+            url_tienda = urlTienda,
             imagen = imagen,
             estado = estado
         )
@@ -191,29 +182,35 @@ public class AppDatabase(driverFactory: DriverFactory){
         participantesQueries.insertParticipante(id_evento, id_usuario)
     }
 
-    public fun getParticipanteById(id: Long): ParticipantesDto? {
-        return participantesQueries.selectParticipanteById(id).executeAsOneOrNull()?.toDTO()
-    }
 
     public fun getParticipantesByEvento(id_evento: Long): List<ParticipantesDto> {
         return participantesQueries.selectParticipantesByEvento(id_evento).executeAsList().map { it.toDTO() }
     }
 
-    public fun getParticipantesByUsuario(id_usuario: Long): List<ParticipantesDto> {
+    public fun deleteParticipanteByIdEventoAndUsuario(id_evento: Long, id_usuario: Long) {
+        participantesQueries.deleteParticipanteByIdEventoAndUsuario(id_evento, id_usuario)
+    }
+
+    public fun selectEventoById(id_usuario: Long): List<ParticipantesDto> {
         return participantesQueries.selectParticipantesByUsuario(id_usuario).executeAsList().map { it.toDTO() }
     }
 
-    public fun deleteParticipanteById(id: Long) {
-        participantesQueries.deleteParticipanteById(id)
-    }
 
+    fun getParticipanteByIdEventoAndUsuario(
+        id_evento: Long,
+        id_usuario: Long
+    ): ParticipantesDto? {
+        return participantesQueries.getParticipanteByIdEventoAndUsuario(
+            id_evento,
+            id_usuario
+        ).executeAsOneOrNull()?.toDto()
+    }
     public fun deleteAllParticipantes() {
         participantesQueries.deleteAllParticipantes()
     }
-
-
-    // --- Funciones de extensión para mapeo a DTOs ---
-    private fun Question.toDTO() = QuestionDto(id = this.id, text = this.text, category = this.category)
+    fun deleteParticipantesByEventoId(idEvento: Long) {
+        participantesQueries.deleteParticipantesByEventoId(idEvento)
+    }
 
     private fun Usuarios.toDTO() = UsuariosDto(
         id = this.id,
@@ -235,20 +232,24 @@ public class AppDatabase(driverFactory: DriverFactory){
         estado = this.estado
     )
 
-    private fun Regalos.toDTO() = RegalosDto(
-        id = this.id,
-        id_evento = this.id_evento,
-        nombre_regalo = this.nombre_regalo,
-        descripcion = this.descripcion,
-        precio_estimado = this.precio_estimado,
-        url_tienda = this.url_tienda,
-        imagen = this.imagen,
-        estado = this.estado
-    )
+
+    fun Participantes.toDto() = ParticipantesDto(
+        id_evento = id_evento,
+        id_usuario = id_usuario)
 
     private fun Participantes.toDTO() = ParticipantesDto(
-        id = this.id,
         id_evento = this.id_evento,
         id_usuario = this.id_usuario
     )
+    fun Regalos.toDTO() = RegalosDto(
+        id = id,
+        id_evento = id_evento,
+        nombre_regalo = nombre_regalo,
+        descripcion = descripcion,
+        precio_estimado = precio_estimado ?: 0.0,
+        url_tienda = url_tienda,
+        imagen = imagen,
+        estado = estado ?: "disponible"
+    )
+
 }

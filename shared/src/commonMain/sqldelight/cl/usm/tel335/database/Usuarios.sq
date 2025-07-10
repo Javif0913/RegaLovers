@@ -1,12 +1,11 @@
     CREATE TABLE Usuarios (
       id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-      nickname TEXT NOT NULL UNIQUE, -- Asumo que el nickname debe ser único
-      email TEXT NOT NULL UNIQUE,   -- El email debe ser único
+      nickname TEXT NOT NULL UNIQUE,
+      email TEXT NOT NULL UNIQUE,
       contrasena_hash TEXT NOT NULL,
-      fecha_registro INTEGER NOT NULL, -- DATETIME se mapea a INTEGER (Unix timestamp en milisegundos) en SQLite
+      fecha_registro INTEGER NOT NULL,
       avatar_imagen TEXT
     );
-
 
     insertUsuario:
     INSERT INTO Usuarios(nickname, email, contrasena_hash, fecha_registro, avatar_imagen)
@@ -34,13 +33,9 @@
 
 
     INSERT INTO Usuarios(nickname, email, contrasena_hash, fecha_registro, avatar_imagen) VALUES
-    ('juan123', 'juan123@example.com', 'hash_juan123', 1680000000000, NULL),
-    ('ana_g', 'ana.gomez@example.com', 'hash_ana_g', 1680100000000, NULL),
-    ('carlos89', 'carlos89@example.com', 'hash_carlos89', 1680200000000, NULL),
-    ('laura_m', 'laura.martinez@example.com', 'hash_laura_m', 1680300000000, NULL),
-    ('pedro_82', 'pedro82@example.com', 'hash_pedro82', 1680400000000, NULL),
-    ('sofia_r', 'sofia.ramirez@example.com', 'hash_sofia_r', 1680500000000, NULL),
-    ('admin2', 'admin2@example.com', 'admin2_hash_secure', 1680600000000, NULL),
-    ('marta_k', 'marta.k@example.com', 'hash_marta_k', 1680700000000, NULL),
-    ('diego_v', 'diego.v@example.com', 'hash_diego_v', 1680800000000, NULL),
-    ('valentina_p', 'valentina.p@example.com', 'hash_valentina_p', 1680900000000, NULL);
+    ('usuario1', 'usuario1@example.com', 'hash123_user1', 1678886400000, NULL),
+    ('admin', 'admin@example.com', 'admin_hash_secure', 1678972800000, NULL),
+    ('C.Ronaldo', 'cr7@usm.xl', 'Siu', 1679059200000, NULL),
+    ('Ronaldo', 'r9@usm.xl', 'travas', 1679059200000, NULL),
+    ('Maradona', 'diego10@usm.cl', 'd1os', 1679059200000, NULL),
+    ('Messi', 'leo10@usm.cl', 'pessi', 1679059200000, NULL);

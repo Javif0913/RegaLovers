@@ -1,3 +1,5 @@
+import org.gradle.kotlin.dsl.implementation
+import org.gradle.kotlin.dsl.project
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
@@ -7,7 +9,9 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
+
 }
+
 
 kotlin {
     androidTarget {
@@ -20,8 +24,23 @@ kotlin {
     sourceSets {
         
         androidMain.dependencies {
+
+            implementation("androidx.compose.material:material-icons-extended:1.5.0")
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
+            implementation(project(":shared")) // <--- AGREGAR ESTA LÍNEA
+            implementation(projects.shared)
+            implementation("androidx.compose.ui:ui-text:1.5.0")
+
+
+            implementation(libs.kotlinx.datetime)
+
+            implementation("androidx.compose.ui:ui:1.0.0") // Usa la versión más reciente
+            implementation("androidx.compose.runtime:runtime:1.5.0")
+            implementation("androidx.compose.foundation:foundation:1.0.0")
+            implementation("androidx.activity:activity-compose:1.3.0") // Para Activity
+            implementation("app.cash.sqldelight:android-driver:2.0.1")
+
         }
         commonMain.dependencies {
             implementation(compose.runtime)

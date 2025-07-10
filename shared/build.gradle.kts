@@ -37,6 +37,8 @@ kotlin {
             implementation(libs.ktor.client.content.negotiation)
             implementation(libs.koin.core)
             implementation(libs.sqldelight.runtime)
+            implementation(libs.sqldelight.server.driver)
+            implementation("app.cash.sqldelight:android-driver:2.0.1") // Versión actual
         }
         sourceSets.jvmMain.dependencies {
             implementation(libs.sqldelight.server.driver)

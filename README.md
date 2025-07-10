@@ -1,36 +1,28 @@
+TEL 335 - Diseño de applicaciones web y móviles
 
-# 🎁 RegaLovers: Aplicacion web para organización de regalos
+Clase 06:
+- Se arreglan un par de cosas en los build.gradlew
+- Se agrega sqlDelight al server (fixeado problema de plugin)
+- Se crea una tabla de ejemplo "Question"
+- Se agrega DriverFactory de la bd
+- Se agrega un ejemplo de llamda a la bd con un GET ("/questions")
 
-**¡Que te regaloneen bien!** 
+This is a Kotlin Multiplatform project targeting Android, iOS, Server.
 
-Una plataforma web para organizar regalos y celebraciones sin estrés, sin repeticiones y con mucho cariño. 
+* `/composeApp` is for code that will be shared across your Compose Multiplatform applications.
+  It contains several subfolders:
+  - `commonMain` is for code that’s common for all targets.
+  - Other folders are for Kotlin code that will be compiled for only the platform indicated in the folder name.
+    For example, if you want to use Apple’s CoreCrypto for the iOS part of your Kotlin app,
+    `iosMain` would be the right folder for such calls.
 
----
+* `/iosApp` contains iOS applications. Even if you’re sharing your UI with Compose Multiplatform, 
+  you need this entry point for your iOS app. This is also where you should add SwiftUI code for your project.
 
-## ✨ ¿Qué es RegaLovers?
+* `/server` is for the Ktor server application.
 
-Es una aplicación web pensada para mejorar la experiencia de regalar en cumpleaños, Navidad, aniversarios y todo tipo de celebraciones.  
-¿Alguna vez has recibido un regalo repetido o no supiste qué regalar? ¡Nosotros también! Por eso, creamos una solución.
+* `/shared` is for the code that will be shared between all targets in the project.
+  The most important subfolder is `commonMain`. If preferred, you can add code to the platform-specific folders here too.
 
----
 
-## 💡 Nuestra solución
-
-A través de una **wishlist** secreta del anfitrión y una **asignación oculta de regalos** entre invitados, RegaLovers hace que regalar sea tan fácil como especial:
-
-- Registro y autenticación de usuarios 👥
-- Creación de eventos personalizados 🎈
-- Wishlist del anfitrión con regalos deseados ✍️
-- Asignación secreta de regalos por parte de los invitados 🤫
-
----
-
-## 🧰 Tecnologías utilizadas
-
-### Frontend
-- HTML5, CSS, HTMX
-
-### Backend
-- Kotlin Multiplatform
-- SqlDelight
----
+Learn more about [Kotlin Multiplatform](https://www.jetbrains.com/help/kotlin-multiplatform-dev/get-started.html)…
