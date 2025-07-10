@@ -1,0 +1,135 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
+body {
+    font-family: 'Inter', sans-serif;
+    /* Fondo principal */
+    background-color: #fffbeb; /* Amarillo */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.container {
+    background-color: #ffffff; /* Blanco */
+    padding: 2.5rem;
+    border-radius: 1rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    text-align: center;
+    max-width: 90%;
+    width: 500px;
+}
+
+.button {
+    /* Botón principal */
+    background-color: #dc2626; /* Rojo */
+    color: white; /* Texto de Boton */
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+    border: none;
+    margin-top: 1.5rem;
+    display: inline-block;
+    margin-right: 0.5rem;
+}
+
+.button:hover {
+    /* Efecto hover: un rojo un poco más oscuro */
+    background-color: #b91c1c; /* red-700 de Tailwind */
+}
+
+#dataDisplay {
+    margin-top: 1.5rem;
+    text-align: left;
+    /* Fondo del área de datos */
+    background-color: #fef3c7; /* Amarillo */
+    padding: 1rem;
+    border-radius: 0.5rem;
+    max-height: 300px;
+    overflow-y: auto;
+    border: 1px solid #fde68a;
+}
+
+#dataDisplay pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+
+/* Menú lateral */
+.sidebar {
+    height: 100%;
+    width: 0; /* Ancho inicial */
+    position: fixed; /* Fijo en la pantalla */
+    z-index: 1000; /* Por encima de otros elementos */
+    top: 0;
+    right: 0; /* Derecha */
+    background-color: #fcfee8; /* Fondo Amarillo */
+    overflow-x: hidden; /* Ocultar */
+    transition: 0.7s; /* Transicion */
+    padding-top: 60px; /* Espacio para el botón de cerrar */
+    box-shadow: -5px 0 15px rgba(0,0,0,0.2); /* Sombra */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra elemntos  */
+}
+
+.sidebar.open {
+    width: 250px; /* Ancho cuando está abierto */
+}
+
+.sidebar-content {
+    padding: 15px;
+    width: 100%; /* Asegurar que el contenido ocupe el ancho del sidebar */
+    box-sizing: border-box;
+}
+
+.sidebar a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 20px;
+    color: #000000; /* Texto blanco */
+    display: block;
+    transition: 0.3s;
+    width: 100%;
+    text-align: left;
+    box-sizing: border-box;
+}
+
+.sidebar a:hover {
+    color: #fde047;
+}
+
+.sidebar .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+    color: #000000; /* Color negro para el icono de cerrar */
+    cursor: pointer;
+}
+
+/* Boton abrir menu */
+.openbtn {
+    font-size: 20px;
+    cursor: pointer;
+    background-color: #dc2626; /* Rojo */
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 0.5rem;
+    position: fixed; /* Fijo en la pantalla */
+    top: 20px;
+    right: 20px;
+    z-index: 999; /* Por debajo del menú, pero por encima del contenido */
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: background-color 0.3s ease;
+}
+
+.openbtn:hover {
+    background-color: #b91c1c; /* Rojo */
+}

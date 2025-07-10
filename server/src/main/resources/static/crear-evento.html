@@ -1,0 +1,67 @@
+<!-- src/main/resources/static/crear-evento.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Nuevo Evento</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body class="bg-yellow-50 flex justify-center items-center min-h-screen">
+<div class="container bg-white p-8 rounded-xl shadow-lg max-w-md w-full">
+    <h1 class="text-3xl font-bold text-red-600 mb-6 text-center">Crear Nuevo Evento</h1>
+
+    <form id="createEventForm" class="space-y-4">
+        <div>
+            <label for="nombre" class="block text-gray-700 text-sm font-bold mb-2">Nombre del Evento:</label>
+            <input type="text" id="nombre" name="nombre" required
+                   class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+        </div>
+        <div>
+            <label for="descripcion" class="block text-gray-700 text-sm font-bold mb-2">Descripción:</label>
+            <textarea id="descripcion" name="descripcion" rows="3"
+                      class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"></textarea>
+        </div>
+        <div>
+            <label for="lugar" class="block text-gray-700 text-sm font-bold mb-2">Lugar:</label>
+            <input type="text" id="lugar" name="lugar"
+                   class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+        </div>
+        <div>
+            <label for="imagen" class="block text-gray-700 text-sm font-bold mb-2">URL de la Imagen (opcional):</label>
+            <input type="url" id="imagen" name="imagen"
+                   class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+        </div>
+        <div>
+            <label for="tipo_evento" class="block text-gray-700 text-sm font-bold mb-2">Tipo de Evento:</label>
+            <input type="text" id="tipo_evento" name="tipo_evento"
+                   class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+        </div>
+        <div>
+            <label for="estado" class="block text-gray-700 text-sm font-bold mb-2">Estado:</label>
+            <select id="estado" name="estado"
+                    class="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                <option value="Activo">Activo</option>
+                <option value="Pendiente">Pendiente</option>
+                <option value="Finalizado">Finalizado</option>
+            </select>
+        </div>
+
+        <div class="flex items-center justify-between mt-6">
+            <button type="submit" class="button bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded-lg">
+                Crear Evento
+            </button>
+            <a href="/dashboard" class="inline-block align-baseline font-bold text-sm text-red-600 hover:text-red-800">
+                Cancelar
+            </a>
+        </div>
+    </form>
+
+    <p id="message" class="mt-4 text-center text-sm"></p>
+</div>
+
+<!-- Enlace JS -->
+<script src="/assets/js/crear-evento.js"></script>
+</body>
+</html>

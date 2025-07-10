@@ -1,0 +1,11 @@
+# Ignora carpetas temporales de Gradle
+.gradle/
+build/
+
+# Ignora configuraciones locales de IDE
+.idea/
+*.iml
+
+# Archivos del sistema
+.DS_Store
+Thumbs.db
