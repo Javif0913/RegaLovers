@@ -1,25 +1,30 @@
-TEL 335 - Diseño de applicaciones web y móviles
+# TEL 335 - Diseño de Aplicaciones Web y Móviles
 
-Aqui esta la implementación de Android del proyecto.
+## 📱 Aplicación Android - Gestión de Eventos
 
-Importante: Ejecutar desde el archivo MainActivity.kt
+Esta es la implementación Android del proyecto final de la materia TEL 335, desarrollada con **Kotlin Multiplatform** y **Jetpack Compose**.
 
-This is a Kotlin Multiplatform project targeting Android, iOS, Server.
+## 🚀 Características Principales
 
-* `/composeApp` is for code that will be shared across your Compose Multiplatform applications.
-  It contains several subfolders:
-  - `commonMain` is for code that’s common for all targets.
-  - Other folders are for Kotlin code that will be compiled for only the platform indicated in the folder name.
-    For example, if you want to use Apple’s CoreCrypto for the iOS part of your Kotlin app,
-    `iosMain` would be the right folder for such calls.
+- ✅ **Gestión de Eventos**: Crear, editar y eliminar eventos
+- 👥 **Administración de Participantes**: Agregar usuarios a eventos
+- 📊 **Control de Asistencia**: Marcar asistencia/inasistencia de participantes (Pendiente)
+- 🗄️ **Base de Datos Local**: SQLDelight para persistencia de datos
+- 🎨 **UI Moderna**: Interfaz desarrollada con Jetpack Compose
+- 📱 **Multiplataforma**: Preparado para Android y Server
 
-* `/iosApp` contains iOS applications. Even if you’re sharing your UI with Compose Multiplatform, 
-  you need this entry point for your iOS app. This is also where you should add SwiftUI code for your project.
+## 🛠️ Tecnologías Utilizadas
 
-* `/server` is for the Ktor server application.
+- **Kotlin Multiplatform Mobile (KMM)**
+- **Jetpack Compose** - UI moderna y declarativa
+- **SQLDelight** - Base de datos local multiplataforma
+- **Ktor** - Cliente HTTP y servidor
+- **Coroutines** - Programación asíncrona
+- **Material Design 3** - Sistema de diseño
 
-* `/shared` is for the code that will be shared between all targets in the project.
-  The most important subfolder is `commonMain`. If preferred, you can add code to the platform-specific folders here too.
+## 📁 Importante : Ejeecutar desde archivo composeApp/src/androidMain/kotlin/cl/usm/tel335/MainActivity.kt
+
+
 
 
 Learn more about [Kotlin Multiplatform](https://www.jetbrains.com/help/kotlin-multiplatform-dev/get-started.html)…
